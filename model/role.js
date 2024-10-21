@@ -13,7 +13,7 @@ export default class Role extends Base {
 
   async roleList (refreshTalent = false) {
     const res = await MysInfo.get(this.e, 'character')
-    if (res?.retcode !== 0) return false
+    if (res?.retcode !== 0) return this.e.reply(`UID: ${this.e.MysUid}, 获取角色信息失败，请先绑定ck/sk`)
 
     const player = new Player(this.e.MysUid, this.game)
     player.setBasicData(res.data.role, true)

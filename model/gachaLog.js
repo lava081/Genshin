@@ -58,7 +58,7 @@ export default class Role extends Base {
     if (!p) {
       this.uid = await this.checkPermission(this.e.user_id)
       if (!this.uid) {
-        this.e.reply(`请先更新抽卡记录或绑定ck/sk后再尝试查询UID:${uid}的抽卡记录！`)
+        this.e.reply(`请先更新抽卡记录或绑定ck/sk后再尝试查询抽卡记录！`)
         return false
       }
     }

@@ -34,14 +34,14 @@ export default class Calculator extends Base {
   mysInfo
 
   help () {
-    this.e.bot.sendForwardMessage(this.e.contact, common.makeForward(this.tips))
+    this.e.bot.sendForwardMessage(this.e.contact, common.makeForward(this.tips), this.e.message_id)
     return true
   }
 
   /**角色养成计算 */
   async character_count (calculator) {
     this.mysInfo = await MysInfo.init({ e: this.e, apis: 'compute', game: this.game, option: { log: false } })
-    if (!this.mysInfo?.ckInfo?.ck) return false
+    if (!this.mysInfo?.ckInfo?.ck) return this.e.reply('暂无可用CK，请绑定cookie')
 
     /** 
      * @type {{
@@ -84,7 +84,7 @@ export default class Calculator extends Base {
   async getMaterialPack () {
     this.model = 'calculator/materialPack'
     this.mysInfo = await MysInfo.init({ e: this.e, apis: 'compute', game: this.game, option: { log: false } })
-    if (!this.mysInfo?.ckInfo?.ck) return false
+    if (!this.mysInfo?.ckInfo?.ck) return this.e.reply('暂无可用CK，请绑定cookie')
 
     const AllChar = Meta.getData(this.game, 'char', 'allchars')
     const AllWeapon = Meta.getData(this.game, 'weapon', 'allweapons')

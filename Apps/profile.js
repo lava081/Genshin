@@ -27,8 +27,12 @@ export const profile_List = karin.command(
 export const profile__detail = karin.handler(
   'mys.gs.profile',
   async ({ e, profile, uid }) => {
-    const img = await new Profile(e).detail(uid, profile)
-    if (img) e.reply(img)
+    try {
+      const img = await new Profile(e).detail(uid, profile)
+      if (img) e.reply(img)
+    } catch (error) {
+      await e.reply('查询失败，请绑定ck或重新更新面板后查询')
+    }
     return true
   },
   { name: '原神角色面板详情', priority: 200 }
